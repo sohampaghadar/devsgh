@@ -36,14 +36,16 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t your-app-name .
-    
+
     - name: Log in to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
+      with:
+        region: ap-south-1  # Specify the region here
 
     - name: Tag Docker image
       run: |
         docker tag your-app-name:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repository-name:latest
-    
+
     - name: Push Docker image to Amazon ECR
       run: |
         docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repository-name:latest
