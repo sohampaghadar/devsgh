@@ -1,5 +1,5 @@
 # Use the official .NET SDK image to build and publish the app
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Set the working directory
 WORKDIR /src
@@ -14,7 +14,7 @@ WORKDIR "/src/YourApp"
 RUN dotnet publish "YourApp.csproj" -c Release -o /app/publish
 
 # Use the official .NET Runtime image for the runtime
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 
 # Set the working directory in the container
 WORKDIR /app
