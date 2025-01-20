@@ -1,5 +1,5 @@
-# Use the official .NET SDK image to build the app
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# Use the official .NET SDK image for .NET 9.0 to build the application
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -14,8 +14,8 @@ COPY . ./
 # Publish the application to the /app/publish directory
 RUN dotnet publish -c Release -o /app/publish
 
-# Use the official .NET runtime image for the final stage
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+# Use the official .NET runtime image for .NET 9.0 for the final stage
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 
 # Set the working directory inside the container
 WORKDIR /app
